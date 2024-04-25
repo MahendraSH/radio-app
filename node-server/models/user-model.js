@@ -23,7 +23,7 @@ const userSchema = new Schema({
     },
 
 
-});
+}, { timestamps: true });
 
 // encrypt password before saving
 

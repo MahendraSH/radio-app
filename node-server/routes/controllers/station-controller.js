@@ -1,11 +1,16 @@
 import stationsModels from "../../models/stations-models.js";
 import asyncErrorHandler from "../../middlewares/async-error-handler.js";
 import ErrorHandler from "../../utils/error-handler.js";
-
+import cloudinary from "cloudinary";
 export const addStation = asyncErrorHandler(async (req, res, next) => {
 
     const { label, url, lang, categories, location, image, description, slogan } = req.body;
-
+    const upload = await cloudinary.uploader.upload(image, {
+        folder: "stations",
+        crop: "scale",
+        width: 300,
+        height: 300
+    })
     const station = await stationsModels.create({
 
         label,
@@ -13,7 +18,10 @@ export const addStation = asyncErrorHandler(async (req, res, next) => {
         lang,
         categories,
         location,
-        image,
+        image: {
+            public_id: upload.public_id,
+            url: upload.secure_url
+        },
         description,
         slogan
     });
@@ -36,7 +44,32 @@ export const getStations = asyncErrorHandler(async (req, res, next) => {
 
 export const updateStationById = asyncErrorHandler(async (req, res, next) => {
     const id = req.params.id;
-    const station = await stationsModels.findByIdAndUpdate(id, req.body, {
+    const { label, url, lang, categories, location, image, description, slogan } = req.body;
+    if (image) {
+        //  delete image
+        const station = await stationsModels.findById(id);
+        await cloudinary.uploader.destroy(station.image.public_id);
+
+        const upload = await cloudinary.uploader.upload(image, {
+            folder: "stations",
+            crop: "scale",
+            width: 300,
+            height: 300
+        })
+    }
+    const station = await stationsModels.findByIdAndUpdate(id, {
+        label,
+        url,
+        lang,
+        categories,
+        location,
+        image: {
+            public_id: upload.public_id,
+            url: upload.secure_url
+        },
+        description,
+        slogan
+    }, {
         new: true,
         runValidators: true,
         useFindAndModify: false

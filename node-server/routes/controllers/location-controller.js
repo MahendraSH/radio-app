@@ -3,6 +3,7 @@
 import locationModel from "../../models/location-model.js";
 import ErrorHandler from "../../utils/error-handler.js";
 import asyncErrorHandler from "../../middlewares/async-error-handler.js";
+import stationsModels from "../../models/stations-models.js";
 
 export const addLocation = asyncErrorHandler(async (req, res, next) => {
 
@@ -43,7 +44,14 @@ export const deleteLocationById = asyncErrorHandler(async (req, res, next) => {
 
     const id = req.params.id;
 
+    const station = await stationsModels.find({ location: id });
+
+    if (station.length > 0) {
+        return next(new ErrorHandler("This location can not be deleted as it has stations", 400));
+    }
+
     const location = await locationModel.findByIdAndDelete(id);
+
 
     res.status(200).json({
         success: true,
