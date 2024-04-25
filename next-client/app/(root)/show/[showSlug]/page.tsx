@@ -35,7 +35,7 @@ const HomePage: FC<HomePageProps> = ({ searchParams }) => {
 
       <div className="flex flex-row flex-wrap  max-w-full gap-3">
         {items.map((item, index) => (
-          <div className="p-1">
+          <div className="p-1" key={index}>
             <Link href={`/show/${item.showSlug}/${item.id}`}>
               <Card className=" ">
                 <CardContent>
