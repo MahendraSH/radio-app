@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import langRoutes from "./routes/lang-routes.js";
 import locationRoutes from "./routes/location-routes.js";
 import categoriesRouter from "./routes/categories-router.js";
+import userRouter from "./routes/user-routes.js";
+import stationRouter from "./routes/station-routes.js";
 import errorController from "./middlewares/error-controller.js";
 dotenv.config();
 
@@ -20,6 +22,8 @@ app.get("/", (req, res) => {
 app.use("/api/langs", langRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/users", userRouter);
+app.use("/api/stations", stationRouter);
 
 //  error controller
 app.use(errorController);
