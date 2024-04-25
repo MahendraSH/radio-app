@@ -8,7 +8,7 @@ const ToastProvider: FC<ToastProviderProps> = ({}) => {
     <Toaster
       position="top-center"
       gutter={5}
-      options={{
+      toastOptions={{
         duration: 3000,
         className:
           "bg-primary text-primary-foreground border border-2 border-primary-foreground rounded px-4 py-2 text-sm font-bold transition-colors",
