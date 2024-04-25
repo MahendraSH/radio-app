@@ -24,11 +24,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
   },
   metadataBase: new URL(siteConfig.url),
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 2,
-  },
+
   other: {
     ogImage: siteConfig.ogImage,
     twitterImage: siteConfig.ogImage,
@@ -61,11 +57,9 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     card: "summary_large_image",
   },
-  colorScheme: "dark light",
   creator: siteConfig.name,
   publisher: siteConfig.name,
 
-  themeColor: "white",
   appleWebApp: {
     title: siteConfig.name,
     capable: true,
@@ -103,10 +97,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <>
-            {children}
-            <Footer />
-          </>
+          <>{children}</>
         </ThemeProvider>
       </body>
     </html>

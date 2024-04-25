@@ -1,0 +1,63 @@
+[
+  {
+    "lang": "lang-1",
+    "stations": [
+      {
+        "id": "1",
+        "label": "station-1",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "imageUrl": "/iamge.jpg",
+        "showLink": "some showLink",
+        "showDescription": "Description of show for station 1"
+      },
+      {
+        "id": "2",
+        "label": "station-2",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "imageUrl": "/iamge.jpg",
+        "showLink": "some showLink",
+        "showDescription": "Description of show for station 2"
+      },
+      {
+        "id": "3",
+        "label": "station-3",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "imageUrl": "/iamge.jpg",
+        "showLink": "some showLink",
+        "showDescription": "Description of show for station 3"
+      }
+    ],
+    "id": "1"
+  },
+  {
+    "lang": "lang-2",
+    "stations": [
+      {
+        "id": "1",
+        "label": "station-1",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "imageUrl": "/iamge.jpg",
+        "showLink": "some showLink",
+        "showDescription": "Description of show for station 1"
+      },
+      {
+        "id": "2",
+        "label": "station-2",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "showDescription": "Description of show for station 2"
+      },
+      {
+        "id": "3",
+        "label": "station-3",
+        "slogan": "some slogan",
+        "categories": ["category-1", "category-2", "category-3"],
+        "showDescription": "Description of show for station 3"
+      }
+    ]
+  }
+]
