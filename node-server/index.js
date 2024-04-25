@@ -32,9 +32,9 @@ app.use("/api/langs", langRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/users", userRouter);
-app.use("/api/stations", stationRouter);
+app.use("/api/1", stationRouter);
 
 //  error controller
 app.use(errorController);
 
-app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`))
+app.listen(process.env.PORT, () => console.log(`Server running  http://localhost:${process.env.PORT}`))

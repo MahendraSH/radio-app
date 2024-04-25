@@ -1,8 +1,7 @@
-import userModel from "../../models/user-model.js";
-import ErrorHandler from "../../utils/error-handler.js";
 import asyncErrorHandler from "../../middlewares/async-error-handler.js";
+import userModel from "../../models/user-model.js";
 import cookieMaker from "../../utils/cookie-maker.js";
-
+import ErrorHandler from "../../utils/error-handler.js";
 
 export const addUser = asyncErrorHandler(async (req, res, next) => {
 
@@ -32,15 +31,17 @@ export const loginUser = asyncErrorHandler(async (req, res, next) => {
 
     const { name, password } = req.body;
 
-    const user = await userModel.findOne({ name });
+    const user = await userModel.findOne({ name }).select("+password");
 
     if (!user) {
 
         return (next(new ErrorHandler("Invalid credentials", 401)));
 
     }
+    console.log(user);
+    console.log(password);
 
-    const isMatch = await compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
 
     if (!isMatch) {
 
