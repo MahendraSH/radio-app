@@ -1,6 +1,6 @@
-import stationsModels from "../../models/stations-models";
-import asyncErrorHandler from "../../middlewares/async-error-handler";
-import ErrorHandler from "../../utils/error-handler";
+import stationsModels from "../../models/stations-models.js";
+import asyncErrorHandler from "../../middlewares/async-error-handler.js";
+import ErrorHandler from "../../utils/error-handler.js";
 
 export const addStation = asyncErrorHandler(async (req, res, next) => {
 

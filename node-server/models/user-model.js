@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-import { hash, compare } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
-import { sign } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const userSchema = new Schema({
     name: {
@@ -32,7 +32,7 @@ userSchema.pre('save', async function (next) {
         next();
     }
 
-    this.password = await hash(this.password, 10);
+    this.password = await bcrypt.hash(this.password, 10);
 }
 
 );
@@ -40,14 +40,14 @@ userSchema.pre('save', async function (next) {
 // Compare user password for login and logout
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
-    return await compare(enteredPassword, this.password);
+    return await bcrypt.compare(enteredPassword, this.password);
 }
 
 
 // jwt token genreation
 
 userSchema.methods.getJwtToken = function () {
-    return sign({ id: this._id }, process.env.JWT_SECRET,);
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET,);
 }
 
 //  

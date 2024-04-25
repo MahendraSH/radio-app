@@ -7,13 +7,14 @@ import categoriesRouter from "./routes/categories-router.js";
 import userRouter from "./routes/user-routes.js";
 import stationRouter from "./routes/station-routes.js";
 import errorController from "./middlewares/error-controller.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
-
+app.use(cookieParser());
 app.get("/", (req, res) => {
     res.send("Hello World!");
 })
