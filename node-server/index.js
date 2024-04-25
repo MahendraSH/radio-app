@@ -8,6 +8,7 @@ import userRouter from "./routes/user-routes.js";
 import stationRouter from "./routes/station-routes.js";
 import errorController from "./middlewares/error-controller.js";
 import cookieParser from "cookie-parser";
+import dbConnect from "./db/db-connect.js";
 dotenv.config();
 
 const app = express();
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 })
 //  routes 
-
+dbConnect()
 app.use("/api/langs", langRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/categories", categoriesRouter);
