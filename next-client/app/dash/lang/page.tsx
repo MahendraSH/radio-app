@@ -16,6 +16,7 @@ import { Card } from "@/components/ui/card";
 import { axiosServer } from "@/lib/axios/helper";
 import toast from "react-hot-toast";
 import LangForm from "./_components/lang-form";
+import { notFound } from "next/navigation";
 
 interface LangPageProps {}
 
@@ -24,7 +25,8 @@ const LangPage: FC<LangPageProps> = async ({}) => {
     .get("/langs")
     .then((res) => res.data)
     .catch((err) => {
-      toast.error(err.response.data.message);
+      console.log(err);
+      notFound();
     });
   return (
     <div className=" md:px-8">
