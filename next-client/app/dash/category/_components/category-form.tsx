@@ -21,18 +21,20 @@ import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { DialogClose } from "@/components/ui/dialog";
-import { LangColumn } from "./data-table/columns";
+import { CategoryColumn } from "./data-table/columns";
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name is required" }),
 });
-interface LangFormProps {
-  initialData?: LangColumn;
+interface CategoryFormProps {
+  initialData?: CategoryColumn;
 }
 
-const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
+const CategoryForm: FC<CategoryFormProps> = ({
+  initialData = {} as CategoryColumn,
+}) => {
   const isEdit = initialData.id ? true : false;
-  const title = isEdit ? "Edit Lang" : "Add Lang";
-  const description = isEdit ? "Edit your Lang" : "Add your Lang";
+  const title = isEdit ? "Edit Category" : "Add Category";
+  const description = isEdit ? "Edit your Category" : "Add your Category";
   const buttonLabel = isEdit ? "Update" : "Create";
 
   const router = useRouter();
@@ -49,10 +51,10 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
     setIsLoading(true);
     if (isEdit) {
       const data = await axiosClient
-        .put(`/langs/${initialData.id}`, values)
+        .put(`/categories/${initialData.id}`, values)
         .then((res) => {
           if (res.status === 200) {
-            toast.success("Lang Updated Successfully");
+            toast.success("Category Updated Successfully");
             return res.data;
           }
         })
@@ -61,10 +63,10 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
         });
     } else {
       const data = await axiosClient
-        .post("/langs", values)
+        .post("/categories", values)
         .then((res) => {
           if (res.status === 201) {
-            toast.success("Lang Created Successfully");
+            toast.success("Category Created Successfully");
             return res.data;
           }
         })
@@ -119,4 +121,4 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
   );
 };
 
-export default LangForm;
+export default CategoryForm;

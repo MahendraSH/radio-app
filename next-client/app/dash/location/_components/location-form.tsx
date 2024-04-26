@@ -21,18 +21,20 @@ import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { DialogClose } from "@/components/ui/dialog";
-import { LangColumn } from "./data-table/columns";
+import { LocationColumn } from "./data-table/columns";
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name is required" }),
 });
-interface LangFormProps {
-  initialData?: LangColumn;
+interface LocationFormProps {
+  initialData?: LocationColumn;
 }
 
-const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
+const LocationForm: FC<LocationFormProps> = ({
+  initialData = {} as LocationColumn,
+}) => {
   const isEdit = initialData.id ? true : false;
-  const title = isEdit ? "Edit Lang" : "Add Lang";
-  const description = isEdit ? "Edit your Lang" : "Add your Lang";
+  const title = isEdit ? "Edit Location" : "Add Location";
+  const description = isEdit ? "Edit your Location" : "Add your Location";
   const buttonLabel = isEdit ? "Update" : "Create";
 
   const router = useRouter();
@@ -49,10 +51,10 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
     setIsLoading(true);
     if (isEdit) {
       const data = await axiosClient
-        .put(`/langs/${initialData.id}`, values)
+        .put(`/locations/${initialData.id}`, values)
         .then((res) => {
           if (res.status === 200) {
-            toast.success("Lang Updated Successfully");
+            toast.success("Location Updated Successfully");
             return res.data;
           }
         })
@@ -61,10 +63,10 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
         });
     } else {
       const data = await axiosClient
-        .post("/langs", values)
+        .post("locations", values)
         .then((res) => {
           if (res.status === 201) {
-            toast.success("Lang Created Successfully");
+            toast.success("Location Created Successfully");
             return res.data;
           }
         })
@@ -119,4 +121,4 @@ const LangForm: FC<LangFormProps> = ({ initialData = {} as LangColumn }) => {
   );
 };
 
-export default LangForm;
+export default LocationForm;

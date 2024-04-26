@@ -22,14 +22,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import LangForm from "../lang-form";
-import toast from "react-hot-toast";
+import LocationForm from "../location-form";
 import { axiosClient } from "@/lib/axios/helper";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type LangColumn = {
+export type LocationColumn = {
   index: number;
   id: string;
   name: string;
@@ -37,7 +37,7 @@ export type LangColumn = {
   updatedAt: string;
 };
 
-export const columns: ColumnDef<LangColumn>[] = [
+export const columns: ColumnDef<LocationColumn>[] = [
   {
     accessorKey: "index",
     header: "Index",
@@ -63,6 +63,7 @@ export const columns: ColumnDef<LangColumn>[] = [
     },
   },
   {
+    id: "index",
     cell: ({ row }) => (
       <Dialog>
         <DialogTrigger
@@ -72,32 +73,30 @@ export const columns: ColumnDef<LangColumn>[] = [
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Lang</DialogTitle>
+            <DialogTitle>Add Location</DialogTitle>
           </DialogHeader>
           {/*  add form data */}
-          <LangForm initialData={row.original} />
+          <LocationForm initialData={row.original} />
         </DialogContent>
       </Dialog>
     ),
     enableSorting: false,
-    id: "index",
   },
   {
     cell: ({ row }) => {
       const router = useRouter();
       const handleDelete = async () => {
         await axiosClient
-          .delete(`/langs/${row.original.id}`)
+          .delete(`/locations/${row.original.id}`)
           .then((res) => {
             if (res.status === 200) {
-              toast.success("Lang Deleted Successfully");
+              toast.success("Location Deleted Successfully");
               return res.data;
             }
           })
           .catch((err) => {
             toast.error(err.response?.data.message);
           });
-
         router.refresh();
       };
       return (

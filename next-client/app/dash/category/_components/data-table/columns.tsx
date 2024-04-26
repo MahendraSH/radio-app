@@ -22,14 +22,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import LangForm from "../lang-form";
+import CategoryForm from "../category-form";
 import toast from "react-hot-toast";
 import { axiosClient } from "@/lib/axios/helper";
 import { useRouter } from "next/navigation";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type LangColumn = {
+export type CategoryColumn = {
   index: number;
   id: string;
   name: string;
@@ -37,7 +37,7 @@ export type LangColumn = {
   updatedAt: string;
 };
 
-export const columns: ColumnDef<LangColumn>[] = [
+export const columns: ColumnDef<CategoryColumn>[] = [
   {
     accessorKey: "index",
     header: "Index",
@@ -72,10 +72,10 @@ export const columns: ColumnDef<LangColumn>[] = [
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Lang</DialogTitle>
+            <DialogTitle>Add Category</DialogTitle>
           </DialogHeader>
           {/*  add form data */}
-          <LangForm initialData={row.original} />
+          <CategoryForm initialData={row.original} />
         </DialogContent>
       </Dialog>
     ),
@@ -87,10 +87,10 @@ export const columns: ColumnDef<LangColumn>[] = [
       const router = useRouter();
       const handleDelete = async () => {
         await axiosClient
-          .delete(`/langs/${row.original.id}`)
+          .delete(`/categories/${row.original.id}`)
           .then((res) => {
             if (res.status === 200) {
-              toast.success("Lang Deleted Successfully");
+              toast.success("Category Deleted Successfully");
               return res.data;
             }
           })
