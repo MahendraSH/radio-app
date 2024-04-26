@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Button } from "../ui/button";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "../ui/mode-toggle";
 import { siteConfig } from "@/lib/data/site-config";
 import { SearchIcon } from "lucide-react";
 

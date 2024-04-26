@@ -31,7 +31,7 @@ const errorController = (err, req, res, next) => {
 
         success: false,
         message: err.message,
-        error: err.stack,
+        // error: err.stack,
     });
 };
 

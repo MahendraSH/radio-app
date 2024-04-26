@@ -1,3 +1,4 @@
+import Header from "@/components/dash-nav-componets/header";
 import Navbar from "@/components/nav-components/navbar";
 import type { Metadata } from "next";
 
@@ -6,17 +7,15 @@ export const metadata: Metadata = {
   description: "dashboard",
 };
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <>
-      <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        {children}
-      </main>
+      <Header />
+      <main className=" min-h-screen w-full ">{children}</main>
     </>
   );
 }

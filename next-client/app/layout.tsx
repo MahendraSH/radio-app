@@ -64,7 +64,6 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: siteConfig.name,
     capable: true,
-    statusBarStyle: "default",
   },
 
   verification: {
@@ -90,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

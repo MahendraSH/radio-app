@@ -14,7 +14,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: "*" }));
+
+app.use(cors({ credentials: true, origin: ['https://radio-app-demo.vercel.app', "http://localhost:3000"] })); // production
 app.use(express.json());
 app.use(cookieParser());
 app.get("/", (req, res) => {
@@ -32,7 +33,7 @@ app.use("/api/langs", langRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/users", userRouter);
-app.use("/api/1", stationRouter);
+app.use("/api/stations", stationRouter);
 
 //  error controller
 app.use(errorController);
