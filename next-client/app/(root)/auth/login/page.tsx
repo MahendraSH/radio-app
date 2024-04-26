@@ -50,7 +50,9 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
       if (res.status === 200) {
         toast.success("Login Successful");
         router.push("/dash/overview");
-        document.cookie = `loginToken=${res.data.data.loginToken}; path=/;secure; samesite=none;`;
+        document.cookie = `loginToken=${res.data.loginToken}; path=/;secure; samesite=none;`;
+        // console.log(res.data);
+        // console.log(res.data.loginToken);
       }
     } catch (error: AxiosError | any) {
       toast.error("Login Failed :- " + error.response?.data.message);
