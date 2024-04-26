@@ -10,6 +10,7 @@ const cookieMaker = async (res, statuscode, user) => {
         httpOnly: true,  //accessible only by web server 
         secure: true, //https
         sameSite: 'None', //cross-site cookie 
+        domain: process.env.CLIENT_DOMAIN
     };
 
 
