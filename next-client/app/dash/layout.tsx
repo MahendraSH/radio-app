@@ -15,7 +15,9 @@ export default function DashboardLayout({
   return (
     <>
       <Header />
-      <main className=" min-h-screen w-full ">{children}</main>
+      <main className=" min-h-screen w-full container py-8 md:px-10 ">
+        {children}
+      </main>
     </>
   );
 }
