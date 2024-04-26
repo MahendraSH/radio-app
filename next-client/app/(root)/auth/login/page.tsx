@@ -12,14 +12,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOff } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { axiosClient } from "@/lib/axios/helper";
-import toast from "react-hot-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
+import { EyeIcon, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { z } from "zod";
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "name must be at least 2 characters.",
@@ -50,6 +50,7 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
       if (res.status === 200) {
         toast.success("Login Successful");
         router.push("/dash/overview");
+        document.cookie = `loginToken=${res.data.data.loginToken}; path=/;secure; samesite=none;`;
       }
     } catch (error: AxiosError | any) {
       toast.error("Login Failed :- " + error.response?.data.message);

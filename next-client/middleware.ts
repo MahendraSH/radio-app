@@ -29,6 +29,9 @@ async function checkAuth(request: NextRequest) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 }
+// // Error during authentication: Error: Auth failed
+//     at (middleware.ts:26:10)
+//     at (node_modules/next/dist/esm/server/web/adapter.js:158:0)
 
 export const config = {
   matcher: "/dash/:path*",
