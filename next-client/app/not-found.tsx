@@ -7,7 +7,7 @@ import { FC } from "react";
 
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const NotFoundPage: FC<pageProps> = ({}) => {
   const router = useRouter();
   const onHandleBack = () => {
     router.back();
@@ -34,4 +34,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default NotFoundPage;

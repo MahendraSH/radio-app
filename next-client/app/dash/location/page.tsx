@@ -17,9 +17,9 @@ import { axiosServer } from "@/lib/axios/helper";
 import toast from "react-hot-toast";
 import LocationForm from "./_components/location-form";
 
-interface pageProps {}
+interface LocationPageProps {}
 
-const page: FC<pageProps> = async ({}) => {
+const LocationPage: FC<LocationPageProps> = async ({}) => {
   const data = await axiosServer
     .get("/locations")
     .then((res) => res.data)
@@ -76,4 +76,4 @@ const page: FC<pageProps> = async ({}) => {
   );
 };
 
-export default page;
+export default LocationPage;

@@ -17,9 +17,9 @@ import { axiosServer } from "@/lib/axios/helper";
 import toast from "react-hot-toast";
 import CategoryForm from "./_components/category-form";
 
-interface pageProps {}
+interface CategoryPageProps {}
 
-const page: FC<pageProps> = async ({}) => {
+const CategoryPage: FC<CategoryPageProps> = async ({}) => {
   const data = await axiosServer
     .get("/categories")
     .then((res) => res.data)
@@ -76,4 +76,4 @@ const page: FC<pageProps> = async ({}) => {
   );
 };
 
-export default page;
+export default CategoryPage;

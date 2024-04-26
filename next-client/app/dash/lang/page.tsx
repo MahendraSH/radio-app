@@ -17,9 +17,9 @@ import { axiosServer } from "@/lib/axios/helper";
 import toast from "react-hot-toast";
 import LangForm from "./_components/lang-form";
 
-interface pageProps {}
+interface LangPageProps {}
 
-const page: FC<pageProps> = async ({}) => {
+const LangPage: FC<LangPageProps> = async ({}) => {
   const data = await axiosServer
     .get("/langs")
     .then((res) => res.data)
@@ -76,4 +76,4 @@ const page: FC<pageProps> = async ({}) => {
   );
 };
 
-export default page;
+export default LangPage;
