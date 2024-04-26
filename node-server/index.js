@@ -16,9 +16,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'https://radio-app-demo.vercel.app',
-    // origin: 'http://localhost:3000',
-
+    origin: ['https://radio-app-demo.vercel.app', 'http://localhost:3000'],
     credentials: true
 }));
 app.use(express.json());
