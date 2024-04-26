@@ -38,8 +38,8 @@ export const loginUser = asyncErrorHandler(async (req, res, next) => {
         return (next(new ErrorHandler("Invalid credentials", 401)));
 
     }
-    console.log(user);
-    console.log(password);
+    // console.log(user);
+    // console.log(password);
 
     const isMatch = await user.comparePassword(password);
 

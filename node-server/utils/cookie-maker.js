@@ -13,11 +13,12 @@ const cookieMaker = async (res, statuscode, user) => {
         domain: process.env.CLIENT_DOMAIN
     };
 
+    console.log("loginToken", loginToken);
 
     res.status(200).cookie("loginToken", loginToken, options).json({
         success: true,
         user,
-        // loginToken,
+        loginToken,
     });
 
 };
