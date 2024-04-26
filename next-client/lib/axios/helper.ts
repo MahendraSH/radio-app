@@ -12,7 +12,9 @@ const serverAxiosInstance: AxiosInstance = axios.create({
 
 const clientAxiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api",
-  withCredentials: true,
+  headers: {
+    Cookie: isServer ? "" : document.cookie,
+  },
 });
 
 // Add a response interceptor for global error handling
