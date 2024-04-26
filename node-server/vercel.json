@@ -1,5 +1,5 @@
 {
   "version": 2,
   "name": "node-server",
-  "routes": [{ "src": "/api/(.*)", "dest": "/api/$1.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "index.js " }]
 }
