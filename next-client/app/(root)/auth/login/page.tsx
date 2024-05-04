@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
+import cookies from "js-cookie";
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "name must be at least 2 characters.",
@@ -49,8 +50,11 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
       const res = await axiosClient.post("/users/login", values);
       if (res.status === 200) {
         toast.success("Login Successful");
+        //  5 hours = 5 * 60 * 60 * 1000
+       cookies.set("loginToken", res.data.loginToken as string , {expires: new Date(Date.now() + 5 * 60 * 60 * 1000)});
+
         router.push("/dash/overview");
-        document.cookie = `loginToken=${res.data.loginToken}; path=/;secure; samesite=none;`;
+        //  document.cookie = `loginToken=${res.data.loginToken}; path=/;secure; samesite=none;`;
         // console.log(res.data);
         // console.log(res.data.loginToken);
       }

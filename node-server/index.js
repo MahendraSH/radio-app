@@ -14,26 +14,26 @@ dotenv.config();
 
 const app = express();
 
+app.use(
+  cors({
+    origin: ["https://radio-app-demo.vercel.app", "http://localhost:3000"],
 
-app.use(cors({
-    origin: 'https://radio-app-demo.vercel.app',
-    // origin: 'http://localhost:3000',
-
-    credentials: true
-}));
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 app.get("/", (req, res) => {
-    res.send("Hello World!");
-})
+  res.send("Hello World!");
+});
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
-})
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
-//  routes 
-dbConnect()
+//  routes
+dbConnect();
 app.use("/api/langs", langRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/categories", categoriesRouter);
@@ -43,4 +43,6 @@ app.use("/api/stations", stationRouter);
 //  error controller
 app.use(errorController);
 
-app.listen(process.env.PORT, () => console.log(`Server running  http://localhost:${process.env.PORT}`))
+app.listen(process.env.PORT, () =>
+  console.log(`Server running  http://localhost:${process.env.PORT}`),
+);

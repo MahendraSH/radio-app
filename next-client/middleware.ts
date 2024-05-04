@@ -1,6 +1,6 @@
 import type { NextRequest, NextFetchEvent } from "next/server";
 import { NextResponse } from "next/server";
-
+import Cookies from "js-cookie";
 export function middleware(request: NextRequest, ev: NextFetchEvent) {
   return checkAuth(request);
 }
